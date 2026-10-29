@@ -1,0 +1,24 @@
+{
+  "name": "hark",
+  "private": true,
+  "description": "One inbox for AI agents, scripts and webhooks — live, actionable notifications on every device.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter @hark/server --filter @hark/web dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "deploy": "node apps/server/scripts/deploy.mjs",
+    "deploy:check": "node apps/server/scripts/deploy.mjs --dry-run",
+    "android:build": "cd apps/android && ./gradlew assembleDebug",
+    "macos:build": "apps/apple/scripts/build-macos-app.sh"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

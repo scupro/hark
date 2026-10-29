@@ -1,0 +1,35 @@
+# Copy to .dev.vars for `wrangler dev` (it's git-ignored). Never enable DEV_LOGIN in production.
+DEV_LOGIN=true
+PUBLIC_URL=http://localhost:8787
+
+# /auth/dev-login only answers on loopback hosts, or on hosts listed here. `wrangler dev` rewrites request URLs to
+# the first `routes` entry from wrangler.jsonc, so this checkout needs that host listed (a self-host checkout with no
+# `routes` sees plain `localhost` and can leave this empty). Keep this line in .dev.vars only — never in wrangler.jsonc.
+DEV_LOGIN_HOSTS=hark.app
+
+# Any long random string: `openssl rand -base64 32`
+SESSION_SECRET=change-me-to-a-long-random-string
+
+# Optional: restrict sign-in (comma-separated emails, or @domain.com)
+# ALLOWED_EMAILS=you@example.com
+
+# Sign-in methods to offer: password (default) | google | both.
+# Unset means password; Google sign-in needs an explicit `google` or `both` plus its credentials.
+AUTH_MODE=password
+
+# Shared sign-in password, stored as a PBKDF2-HMAC-SHA256 hash (no Google OAuth needed).
+# Generate your own — this example hash is for the password "password-1234" and must not be used for real:
+#   pnpm --filter @hark/server hash-password 'your password'
+AUTH_PASSWORD_HASH=pbkdf2-sha256$210000$z1rMcTUksgm6zNVZtujCKQ$oBicMr7c_BsCpMaQDYpUOYpsLGw0C5OWhZVL2Ar-7Z8
+
+# Google OAuth (only needed to test real Google sign-in locally; redirect URI http://localhost:8787/auth/google/callback)
+# GOOGLE_CLIENT_ID=xxxxxxxx.apps.googleusercontent.com
+# GOOGLE_CLIENT_SECRET=GOCSPX-xxxxxxxx
+
+# Web Push: generate with `node scripts/generate-vapid-keys.mjs` and paste both lines here
+# VAPID_PUBLIC_KEY=
+# VAPID_PRIVATE_KEY=
+# VAPID_SUBJECT=mailto:you@example.com
+
+# FCM (Android): the Firebase service-account JSON on ONE line (same project as google-services.json)
+# FCM_SERVICE_ACCOUNT_JSON={"type":"service_account","project_id":"...","private_key":"-----BEGIN PRIVATE KEY-----\n...","client_email":"..."}

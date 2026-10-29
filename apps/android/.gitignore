@@ -1,0 +1,12 @@
+.gradle/
+build/
+app/build/
+local.properties
+.idea/
+.kotlin/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+# NOTE: app/google-services.json is intentionally NOT ignored: committing your own Firebase project's file is
+# fine (it is public config). This repository ships without one, so the build falls back to the WebSocket.
